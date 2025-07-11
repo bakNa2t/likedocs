@@ -3,9 +3,12 @@
 import {
   BoldIcon,
   ItalicIcon,
+  ListTodoIcon,
   LucideIcon,
+  MessageSquarePlusIcon,
   PrinterIcon,
   Redo2Icon,
+  RemoveFormattingIcon,
   SpellCheckIcon,
   UnderlineIcon,
   Undo2Icon,
@@ -98,6 +101,25 @@ export const Toolbar = () => {
         onClick: () => editor?.chain().focus().toggleUnderline().run(),
       },
     ],
+    [
+      {
+        label: "Comment",
+        icon: MessageSquarePlusIcon,
+        isActive: false,
+        onClick: () => console.log("Comment add"),
+      },
+      {
+        label: "List Todo",
+        icon: ListTodoIcon,
+        isActive: editor?.isActive("taskList"),
+        onClick: () => editor?.chain().focus().toggleTaskList().run(),
+      },
+      {
+        label: "Remove Formatting",
+        icon: RemoveFormattingIcon,
+        onClick: () => editor?.chain().focus().unsetAllMarks().run(),
+      },
+    ],
   ];
 
   return (
@@ -105,9 +127,22 @@ export const Toolbar = () => {
       {sections[0].map((item) => (
         <ToolbarButton key={item.label} {...item} />
       ))}
+      {/* Font family */}
+      {/* Heading */}
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {/* Font size */}
       {sections[1].map((item) => (
+        <ToolbarButton key={item.label} {...item} />
+      ))}
+      {/*  Text color */}
+      {/*  HighLight color */}
+      <Separator orientation="vertical" className="h-6 bg-neutral-300" />
+      {/*  Link */}
+      {/*  Image */}
+      {/*  Align */}
+      {/*  Lihe height */}
+      {/*  List */}
+      {sections[2].map((item) => (
         <ToolbarButton key={item.label} {...item} />
       ))}
     </div>
