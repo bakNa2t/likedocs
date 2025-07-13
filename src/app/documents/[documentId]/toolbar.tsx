@@ -5,6 +5,7 @@ import { type Level } from "@tiptap/extension-heading";
 import {
   BoldIcon,
   ChevronDownIcon,
+  HighlighterIcon,
   ItalicIcon,
   ListTodoIcon,
   LucideIcon,
@@ -27,6 +28,30 @@ import {
 
 import { cn } from "@/lib/utils";
 import { useEditorStore } from "@/store/use-editor-store";
+
+const HighlightColorButton = () => {
+  const { editor } = useEditorStore();
+
+  const value = editor?.getAttributes("highlight").color || "#ffffff";
+
+  const onChange = (color: ColorResult) => {
+    editor?.chain().focus().setHighlight({ color: color.hex }).run();
+  };
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button className="flex flex-col items-center justify-center h-7 min-w-7 shrink-0 rounded-sm hover:bg-neutral-200/80 px-1.5 overflow-hidden text-sm">
+          <HighlighterIcon className="size-4" />
+        </button>
+      </DropdownMenuTrigger>
+
+      <DropdownMenuContent className="p-0">
+        <SketchPicker color={value} onChange={onChange} />
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
 
 const TextColorButton = () => {
   const { editor } = useEditorStore();
@@ -269,7 +294,7 @@ export const Toolbar = () => {
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {/* Font family */}
       <FontFamilyButton />
-      {/* Heading */}
+      {/* Heading button*/}
       <HeadingLevelButton />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {/* Font size */}
@@ -278,7 +303,8 @@ export const Toolbar = () => {
       ))}
       {/*  Text color button*/}
       <TextColorButton />
-      {/*  HighLight color */}
+      {/*  HighLight color button*/}
+      <HighlightColorButton />
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {/*  Link */}
       {/*  Image */}
