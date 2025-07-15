@@ -1,5 +1,5 @@
+import "@tiptap/extension-text-style";
 import { Extension } from "@tiptap/react";
-import "@tiptap/extension-font-size";
 
 declare module "@tiptap/core" {
   interface Commands<ReturnType> {
