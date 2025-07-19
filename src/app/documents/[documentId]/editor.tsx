@@ -19,6 +19,8 @@ import TextAlign from "@tiptap/extension-text-align";
 
 import StarterKit from "@tiptap/starter-kit";
 
+import { Ruler } from "./ruler";
+
 import { useEditorStore } from "@/store/use-editor-store";
 import { FontSizeExtension } from "@/extensions/font-size";
 import { LineHeightExtension } from "@/extensions/line-height";
@@ -27,6 +29,8 @@ export const Editor = () => {
   const { setEditor } = useEditorStore();
 
   const editor = useEditor({
+    immediatelyRender: false,
+
     onCreate({ editor }) {
       setEditor(editor);
     },
@@ -89,26 +93,11 @@ export const Editor = () => {
         nested: true,
       }),
     ],
-    content: `
-        <table>
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th colspan="3">Description</th>
-            </tr>
-            <tr>
-              <td>Cyndi Lauper</td>
-              <td>Singer</td>
-              <td>Songwriter</td>
-              <td>Actress</td>
-            </tr>
-          </tbody>
-        </table>
-      `,
   });
 
   return (
     <div className="size-full overflow-auto bg-[#FAFBFD] px-4 print:p-0 print:bg-white print:overflow-visible">
+      <Ruler />
       <div className="flex justify-center min-w-max w-[816px] py-6 print:py-0 mx-auto print:w-full print:min-w-0">
         <EditorContent editor={editor} />
       </div>

@@ -65,12 +65,9 @@ export const Ruler = () => {
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
-      className="flex items-end relative h-6 first-letter:border-b border-gray-300 select-none print:hidden"
+      className="flex items-end relative h-6 w-[816px] mx-auto border-b border-gray-300 select-none print:hidden"
     >
-      <div
-        id="ruler-container"
-        className="relative w-full h-full max-w-[816px] mx-auto"
-      >
+      <div id="ruler-container" className="relative w-full h-full">
         <Marker
           position={leftMargin}
           isLeft={true}
