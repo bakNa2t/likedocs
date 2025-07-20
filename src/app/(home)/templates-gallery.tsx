@@ -4,16 +4,12 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
 } from "@/components/ui/carousel";
-import { cn } from "@/lib/utils";
 
-const templates = [
-  {
-    id: "blank",
-    label: "Blank Document",
-    imageUrl: "templates/blank-document.svg",
-  },
-];
+import { cn } from "@/lib/utils";
+import { templates } from "@/constants/templates";
 
 export const TemplatesGallery = () => {
   const isCreating = false;
@@ -53,6 +49,9 @@ export const TemplatesGallery = () => {
               </CarouselItem>
             ))}
           </CarouselContent>
+
+          <CarouselPrevious />
+          <CarouselNext />
         </Carousel>
       </div>
     </div>
