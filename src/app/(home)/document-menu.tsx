@@ -1,6 +1,7 @@
-import { ExternalLinkIcon, MoreVertical } from "lucide-react";
+import { ExternalLinkIcon, MoreVertical, TrashIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { RemoveDialog } from "@/components/remove-dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -30,6 +31,16 @@ export const DocumentMenu = ({
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end">
+        <RemoveDialog documentId={documentId}>
+          <DropdownMenuItem
+            onSelect={(e) => e.preventDefault()}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <TrashIcon className="size-4 mr-2" />
+            Remove
+          </DropdownMenuItem>
+        </RemoveDialog>
+
         <DropdownMenuItem onClick={() => onNewTab(documentId)}>
           <ExternalLinkIcon className="size-4 mr-2" />
           Open in a new tab
