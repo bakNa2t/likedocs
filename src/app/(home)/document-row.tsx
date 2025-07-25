@@ -1,17 +1,21 @@
 import { SiGoogledocs } from "react-icons/si";
-import { Building2Icon, CircleUserIcon, MoreVertical } from "lucide-react";
+import { format } from "date-fns";
+import { Building2Icon, CircleUserIcon } from "lucide-react";
 
 import { TableCell, TableRow } from "@/components/ui/table";
+import { DocumentMenu } from "./document-menu";
 
 import { Doc } from "../../../convex/_generated/dataModel";
-import { format } from "date-fns";
-import { Button } from "@/components/ui/button";
 
 interface DocumentRowProps {
   document: Doc<"documents">;
 }
 
 export const DocumentRow = ({ document }: DocumentRowProps) => {
+  const onNewTabClick = (id: string) => {
+    window.open(`/documents/${id}`, "_blink");
+  };
+
   return (
     <TableRow className="cursor-pointer">
       <TableCell className="w-[50px]">
@@ -34,9 +38,11 @@ export const DocumentRow = ({ document }: DocumentRowProps) => {
       </TableCell>
 
       <TableCell className="flex justify-end">
-        <Button variant="ghost" size="icon" className="rounded-full">
-          <MoreVertical className="size-4" />
-        </Button>
+        <DocumentMenu
+          documentId={document._id}
+          title={document.title}
+          onNewTab={onNewTabClick}
+        />
       </TableCell>
     </TableRow>
   );
