@@ -1,5 +1,6 @@
-import { SiGoogledocs } from "react-icons/si";
+import { useRouter } from "next/navigation";
 import { format } from "date-fns";
+import { SiGoogledocs } from "react-icons/si";
 import { Building2Icon, CircleUserIcon } from "lucide-react";
 
 import { TableCell, TableRow } from "@/components/ui/table";
@@ -12,12 +13,17 @@ interface DocumentRowProps {
 }
 
 export const DocumentRow = ({ document }: DocumentRowProps) => {
+  const router = useRouter();
+
   const onNewTabClick = (id: string) => {
     window.open(`/documents/${id}`, "_blink");
   };
 
   return (
-    <TableRow className="cursor-pointer">
+    <TableRow
+      onClick={() => router.push(`/documents/${document._id}`)}
+      className="cursor-pointer"
+    >
       <TableCell className="w-[50px]">
         <SiGoogledocs className="size-6 fill-blue-400" />
       </TableCell>
