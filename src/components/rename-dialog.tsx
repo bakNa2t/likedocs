@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useMutation } from "convex/react";
+import { toast } from "sonner";
 
 import {
   Dialog,
@@ -39,9 +40,11 @@ export const RenameDialog = ({
     setIsUpdating(true);
 
     update({ id: documentId, title: title.trim() || "Untitled" })
-      .then(() => setOpen(false))
+      .catch(() => toast.error("Something went wrong"))
+      .then(() => toast.success("Document deleted"))
       .finally(() => {
         setIsUpdating(false);
+        setOpen(false);
       });
   };
 
