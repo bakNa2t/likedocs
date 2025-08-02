@@ -37,6 +37,7 @@ import {
 } from "@/components/ui/menubar";
 import { DocumentInput } from "./document-input";
 import { Avatars } from "./avatars";
+import { Inbox } from "./inbox";
 
 import { useEditorStore } from "@/store/use-editor-store";
 
@@ -286,6 +287,7 @@ export const Navbar = () => {
 
       <div className="flex items-center gap-3 pl-6">
         <Avatars />
+        <Inbox />
 
         <OrganizationSwitcher
           afterCreateOrganizationUrl="/"
