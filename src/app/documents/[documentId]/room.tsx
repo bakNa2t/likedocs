@@ -11,7 +11,8 @@ import {
 
 import { FullScreenLoader } from "@/components/fullscreen-loader";
 
-import { getUsers } from "./actions";
+import { getDocuments, getUsers } from "./actions";
+import { Id } from "../../../../convex/_generated/dataModel";
 
 type User = {
   id: string;
@@ -70,7 +71,14 @@ export function Room({ children }: { children: ReactNode }) {
 
         return filteredUsers.map((user) => user.id);
       }}
-      resolveRoomsInfo={() => []}
+      resolveRoomsInfo={async ({ roomIds }) => {
+        const documents = await getDocuments(roomIds as Id<"documents">[]);
+
+        return documents.map((document) => ({
+          id: document.id,
+          name: document.name,
+        }));
+      }}
     >
       <RoomProvider id={params.documentId as string}>
         <ClientSideSuspense
