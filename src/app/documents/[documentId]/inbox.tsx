@@ -4,18 +4,30 @@ import { BellIcon } from "lucide-react";
 import { ClientSideSuspense } from "@liveblocks/react";
 import { useInboxNotifications } from "@liveblocks/react/suspense";
 import { InboxNotification, InboxNotificationList } from "@liveblocks/react-ui";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 export const Inbox = () => {
   return (
-    <ClientSideSuspense fallback={null}>
-      <InboxMenu />
-    </ClientSideSuspense>
+    <>
+      <ClientSideSuspense
+        fallback={
+          <Button variant="ghost" size="icon" className="relative" disabled>
+            <BellIcon className="size-5" />
+          </Button>
+        }
+      >
+        <InboxMenu />
+      </ClientSideSuspense>
+
+      <Separator orientation="vertical" className="h-6" />
+    </>
   );
 };
 
@@ -23,34 +35,38 @@ const InboxMenu = () => {
   const { inboxNotifications } = useInboxNotifications();
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="relative">
-          <BellIcon className="size-5" />
-          {inboxNotifications.length > 0 && (
-            <span className="absolute -top-1 -right-1 flex items-center justify-center size-4 rounded-full text-xs text-white bg-sky-500">
-              {inboxNotifications.length}
-            </span>
-          )}
-        </Button>
-      </DropdownMenuTrigger>
+    <>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" size="icon" className="relative">
+            <BellIcon className="size-5" />
+            {inboxNotifications.length > 0 && (
+              <span className="absolute -top-1 -right-1 flex items-center justify-center size-4 rounded-full text-xs text-white bg-sky-500">
+                {inboxNotifications.length}
+              </span>
+            )}
+          </Button>
+        </DropdownMenuTrigger>
 
-      <DropdownMenuContent>
-        {inboxNotifications.length > 0 ? (
-          <InboxNotificationList>
-            {inboxNotifications.map((inboxNotification) => (
-              <InboxNotification
-                key={inboxNotification.id}
-                inboxNotification={inboxNotification}
-              />
-            ))}
-          </InboxNotificationList>
-        ) : (
-          <div className="w-[400px] p-2 text-center text-sm text-muted-foreground">
-            No notifications
-          </div>
-        )}
-      </DropdownMenuContent>
-    </DropdownMenu>
+        <DropdownMenuContent>
+          {inboxNotifications.length > 0 ? (
+            <InboxNotificationList>
+              {inboxNotifications.map((inboxNotification) => (
+                <InboxNotification
+                  key={inboxNotification.id}
+                  inboxNotification={inboxNotification}
+                />
+              ))}
+            </InboxNotificationList>
+          ) : (
+            <div className="w-[400px] p-2 text-center text-sm text-muted-foreground">
+              No notifications
+            </div>
+          )}
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <Separator orientation="vertical" className="h-6" />
+    </>
   );
 };
