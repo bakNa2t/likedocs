@@ -2,6 +2,7 @@
 
 import { useEditor, EditorContent } from "@tiptap/react";
 import { useLiveblocksExtension } from "@liveblocks/react-tiptap";
+import { useStorage } from "@liveblocks/react";
 import { Color } from "@tiptap/extension-color";
 import TaskItem from "@tiptap/extension-task-item";
 import TaskList from "@tiptap/extension-task-list";
@@ -30,6 +31,9 @@ import { LineHeightExtension } from "@/extensions/line-height";
 export const Editor = () => {
   const liveblocks = useLiveblocksExtension();
   const { setEditor } = useEditorStore();
+
+  const leftMargin = useStorage((root) => root.leftMargin);
+  const rightMargin = useStorage((root) => root.rightMargin);
 
   const editor = useEditor({
     immediatelyRender: false,
@@ -60,7 +64,7 @@ export const Editor = () => {
     },
     editorProps: {
       attributes: {
-        style: "padding-left: 56px; padding-right: 56px;",
+        style: `padding-left: ${leftMargin ?? 56}px padding-right: ${rightMargin ?? 56}px`,
         class:
           "flex flex-col bg-white border border-[#C7C7C7] focus:outline-none print:border-0 min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text",
       },
