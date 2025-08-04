@@ -64,7 +64,7 @@ export const Editor = () => {
     },
     editorProps: {
       attributes: {
-        style: `padding-left: ${leftMargin ?? 56}px padding-right: ${rightMargin ?? 56}px`,
+        style: `padding-left: ${leftMargin ?? 56}px; padding-right: ${rightMargin ?? 56}px;`,
         class:
           "flex flex-col bg-white border border-[#C7C7C7] focus:outline-none print:border-0 min-h-[1054px] w-[816px] pt-10 pr-14 pb-10 cursor-text",
       },
