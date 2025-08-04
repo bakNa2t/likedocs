@@ -1,8 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { AlertTriangleIcon } from "lucide-react";
 import Link from "next/link";
+import { AlertTriangleIcon } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 const ErrorPage = ({
   error,
@@ -14,7 +15,7 @@ const ErrorPage = ({
   reset: () => void;
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center space-y-6">
+    <div className="flex flex-col items-center justify-center min-h-screen space-y-6">
       <div className="text-center space-y-4">
         <div className="flex justify-center">
           <div className="bg-rose-100 rounded-full p-3">
