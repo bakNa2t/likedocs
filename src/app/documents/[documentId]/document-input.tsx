@@ -1,11 +1,53 @@
+import { useRef, useState } from "react";
+import { useMutation } from "convex/react";
 import { BsCloudCheck } from "react-icons/bs";
 
-export const DocumentInput = () => {
+import { api } from "../../../../convex/_generated/api";
+import { Id } from "../../../../convex/_generated/dataModel";
+
+interface DocumentInputProps {
+  title?: string;
+  id?: Id<"documents">;
+}
+
+export const DocumentInput = ({ title, id }: DocumentInputProps) => {
+  const [value, setValue] = useState(title);
+  const [isError, setIsError] = useState(false);
+  const [isPending, setIsPending] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const mutate = useMutation(api.documents.updateById);
+
   return (
     <div className="flex items-center gap-2">
-      <span className="text-lg px-1.5 cursor-pointer truncate">
-        Untilted Document
-      </span>
+      {isEditing ? (
+        <form className="relative w-fit max-w-[50ch]">
+          <span className="invisible whitespace-pre px-1.5 text-lg">
+            {value || " "}
+          </span>
+
+          <input
+            ref={inputRef}
+            value={value}
+            onChange={() => {}}
+            className="absolute inset-0 px-1.5 text-lg text-black bg-transparent truncate"
+          />
+        </form>
+      ) : (
+        <span
+          onClick={() => {
+            setIsEditing(true);
+            setTimeout(() => {
+              inputRef.current?.focus();
+            }, 0);
+          }}
+          className="text-lg px-1.5 cursor-pointer truncate"
+        >
+          {title}
+        </span>
+      )}
       <BsCloudCheck />
     </div>
   );
