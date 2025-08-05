@@ -4,6 +4,8 @@ import { BsCloudCheck } from "react-icons/bs";
 
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
+import { useDebounce } from "@/hooks/use-debounce";
+import { toast } from "sonner";
 
 interface DocumentInputProps {
   title?: string;
@@ -20,6 +22,26 @@ export const DocumentInput = ({ title, id }: DocumentInputProps) => {
 
   const mutate = useMutation(api.documents.updateById);
 
+  const debounceUpdate = useDebounce((newValue: string) => {
+    if (newValue === title) return;
+
+    if (!id) {
+      throw new Error("No document id");
+    }
+
+    setIsPending(true);
+    mutate({ id, title: newValue })
+      .then(() => toast.success("Document updated"))
+      .catch(() => toast.error("Something went wrong"))
+      .finally(() => setIsPending(false));
+  });
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setValue(newValue);
+    debounceUpdate(newValue);
+  };
+
   return (
     <div className="flex items-center gap-2">
       {isEditing ? (
@@ -31,7 +53,7 @@ export const DocumentInput = ({ title, id }: DocumentInputProps) => {
           <input
             ref={inputRef}
             value={value}
-            onChange={() => {}}
+            onChange={onChange}
             className="absolute inset-0 px-1.5 text-lg text-black bg-transparent truncate"
           />
         </form>
