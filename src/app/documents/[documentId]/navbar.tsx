@@ -40,8 +40,13 @@ import { Avatars } from "./avatars";
 import { Inbox } from "./inbox";
 
 import { useEditorStore } from "@/store/use-editor-store";
+import { Doc } from "../../../../convex/_generated/dataModel";
 
-export const Navbar = () => {
+interface NavbarProps {
+  data: Doc<"documents"> | null;
+}
+
+export const Navbar = ({ data }: NavbarProps) => {
   const { editor } = useEditorStore();
 
   const insertTable = ({ rows, cols }: { rows: number; cols: number }) => {
@@ -68,7 +73,7 @@ export const Navbar = () => {
       type: "application/json",
     });
 
-    onDownload(blob, `document.json`);
+    onDownload(blob, `${data?.title}.json`);
   };
 
   const onSaveHTML = () => {
@@ -79,7 +84,7 @@ export const Navbar = () => {
       type: "text/html",
     });
 
-    onDownload(blob, `document.html`);
+    onDownload(blob, `${data?.title}.html`);
   };
 
   const onSaveText = () => {
@@ -90,7 +95,7 @@ export const Navbar = () => {
       type: "text/plain",
     });
 
-    onDownload(blob, `document.txt`);
+    onDownload(blob, `${data?.title}.txt`);
   };
   return (
     <nav className="flex items-center justify-between">
