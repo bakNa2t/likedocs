@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useMutation } from "convex/react";
+import { useStatus } from "@liveblocks/react";
 import { BsCloudCheck } from "react-icons/bs";
 
 import { api } from "../../../../convex/_generated/api";
@@ -14,7 +15,8 @@ interface DocumentInputProps {
 
 export const DocumentInput = ({ title, id }: DocumentInputProps) => {
   const [value, setValue] = useState(title);
-  const [isError, setIsError] = useState(false);
+
+  const status = useStatus();
   const [isPending, setIsPending] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -35,6 +37,9 @@ export const DocumentInput = ({ title, id }: DocumentInputProps) => {
       .catch(() => toast.error("Something went wrong"))
       .finally(() => setIsPending(false));
   });
+
+  const showLoader = isPending || status === "connecting" || "reconnecting";
+  const showError = status === "disconnected";
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -88,7 +93,7 @@ export const DocumentInput = ({ title, id }: DocumentInputProps) => {
           {title}
         </span>
       )}
-      <BsCloudCheck />
+      {!showLoader && !showError && <BsCloudCheck />}
     </div>
   );
 };
