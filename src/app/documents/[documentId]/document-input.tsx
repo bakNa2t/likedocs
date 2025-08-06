@@ -42,10 +42,27 @@ export const DocumentInput = ({ title, id }: DocumentInputProps) => {
     debounceUpdate(newValue);
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!id || !value) {
+      throw new Error("No document id");
+    }
+
+    setIsPending(true);
+    mutate({ id, title: value })
+      .then(() => {
+        toast.success("Document updated");
+        setIsEditing(false);
+      })
+      .catch(() => toast.error("Something went wrong"))
+      .finally(() => setIsPending(false));
+  };
+
   return (
     <div className="flex items-center gap-2">
       {isEditing ? (
-        <form className="relative w-fit max-w-[50ch]">
+        <form onSubmit={handleSubmit} className="relative w-fit max-w-[50ch]">
           <span className="invisible whitespace-pre px-1.5 text-lg">
             {value || " "}
           </span>
@@ -54,6 +71,7 @@ export const DocumentInput = ({ title, id }: DocumentInputProps) => {
             ref={inputRef}
             value={value}
             onChange={onChange}
+            onBlur={() => setIsEditing(false)}
             className="absolute inset-0 px-1.5 text-lg text-black bg-transparent truncate"
           />
         </form>
