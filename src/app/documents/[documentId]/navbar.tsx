@@ -105,7 +105,7 @@ export const Navbar = ({ data }: NavbarProps) => {
         </Link>
 
         <div className="flex flex-col">
-          <DocumentInput />
+          <DocumentInput title={data?.title} id={data?._id} />
 
           <div className="flex flex-col">
             <Menubar className="h-auto p-0 border-none shadow-none bg-transparent">
