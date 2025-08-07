@@ -2,6 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import { useMutation } from "convex/react";
+import { BsFilePdf } from "react-icons/bs";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import {
   BoldIcon,
   FileIcon,
@@ -20,8 +25,6 @@ import {
   UnderlineIcon,
   Undo2Icon,
 } from "lucide-react";
-import { BsFilePdf } from "react-icons/bs";
-import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 
 import {
   Menubar,
@@ -39,15 +42,31 @@ import { DocumentInput } from "./document-input";
 import { Avatars } from "./avatars";
 import { Inbox } from "./inbox";
 
-import { useEditorStore } from "@/store/use-editor-store";
+import { api } from "../../../../convex/_generated/api";
 import { Doc } from "../../../../convex/_generated/dataModel";
+import { useEditorStore } from "@/store/use-editor-store";
 
 interface NavbarProps {
   data: Doc<"documents"> | null;
 }
 
 export const Navbar = ({ data }: NavbarProps) => {
+  const router = useRouter();
   const { editor } = useEditorStore();
+
+  const mutate = useMutation(api.documents.create);
+
+  const onAddNewDocument = () => {
+    mutate({
+      title: "Untitled document",
+      initialContent: "",
+    })
+      .catch(() => toast.error("Something went wrong"))
+      .then((id) => {
+        toast.success("Document created");
+        router.push(`/documents/${id}`);
+      });
+  };
 
   const insertTable = ({ rows, cols }: { rows: number; cols: number }) => {
     editor
@@ -142,7 +161,10 @@ export const Navbar = ({ data }: NavbarProps) => {
                   </MenubarSub>
 
                   <MenubarItem>
-                    <FilePlusIcon className="size-4 mr-2" />
+                    <FilePlusIcon
+                      onClick={onAddNewDocument}
+                      className="size-4 mr-2"
+                    />
                     New document
                   </MenubarItem>
 
