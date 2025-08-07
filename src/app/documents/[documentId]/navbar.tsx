@@ -46,6 +46,7 @@ import { Inbox } from "./inbox";
 import { api } from "../../../../convex/_generated/api";
 import { Doc } from "../../../../convex/_generated/dataModel";
 import { useEditorStore } from "@/store/use-editor-store";
+import { RenameDialog } from "@/components/rename-dialog";
 
 interface NavbarProps {
   data: Doc<"documents"> | null;
@@ -171,10 +172,20 @@ export const Navbar = ({ data }: NavbarProps) => {
 
                   <MenubarSeparator />
 
-                  <MenubarItem>
-                    <FilePenIcon className="size-4 mr-2" />
-                    Rename
-                  </MenubarItem>
+                  {data?._id && (
+                    <RenameDialog
+                      documentId={data?._id}
+                      initialTitle={data.title}
+                    >
+                      <MenubarItem
+                        onClick={(e) => e.stopPropagation()}
+                        onSelect={(e) => e.preventDefault()}
+                      >
+                        <FilePenIcon className="size-4 mr-2" />
+                        Rename
+                      </MenubarItem>
+                    </RenameDialog>
+                  )}
 
                   {data?._id && (
                     <RemoveDialog documentId={data?._id}>
