@@ -1,12 +1,13 @@
 import { useRef, useState } from "react";
 import { useMutation } from "convex/react";
 import { useStatus } from "@liveblocks/react";
-import { BsCloudCheck } from "react-icons/bs";
+import { BsCloudCheck, BsCloudSlash } from "react-icons/bs";
 
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { useDebounce } from "@/hooks/use-debounce";
 import { toast } from "sonner";
+import { LoaderIcon } from "lucide-react";
 
 interface DocumentInputProps {
   title?: string;
@@ -93,7 +94,11 @@ export const DocumentInput = ({ title, id }: DocumentInputProps) => {
           {title}
         </span>
       )}
-      {!showLoader && !showError && <BsCloudCheck />}
+      {showError && <BsCloudSlash className="size-4" />}
+      {!showLoader && !showError && <BsCloudCheck className="size-4" />}
+      {showLoader && (
+        <LoaderIcon className="size-4 animate-spin text-muted-foreground" />
+      )}
     </div>
   );
 };
