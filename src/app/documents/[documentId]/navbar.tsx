@@ -38,6 +38,7 @@ import {
   MenubarSubTrigger,
   MenubarTrigger,
 } from "@/components/ui/menubar";
+import { RemoveDialog } from "@/components/remove-dialog";
 import { DocumentInput } from "./document-input";
 import { Avatars } from "./avatars";
 import { Inbox } from "./inbox";
@@ -175,10 +176,17 @@ export const Navbar = ({ data }: NavbarProps) => {
                     Rename
                   </MenubarItem>
 
-                  <MenubarItem>
-                    <TrashIcon className="size-4 mr-2" />
-                    Remove
-                  </MenubarItem>
+                  {data?._id && (
+                    <RemoveDialog documentId={data?._id}>
+                      <MenubarItem
+                        onClick={(e) => e.stopPropagation()}
+                        onSelect={(e) => e.preventDefault()}
+                      >
+                        <TrashIcon className="size-4 mr-2" />
+                        Remove
+                      </MenubarItem>
+                    </RemoveDialog>
+                  )}
 
                   <MenubarSeparator />
 
