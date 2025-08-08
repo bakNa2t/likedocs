@@ -65,7 +65,7 @@ export function Room({ children }: { children: ReactNode }) {
 
         if (text) {
           filteredUsers = users.filter((user) =>
-            user.name.toLocaleLowerCase().includes(text.toLocaleLowerCase())
+            user.name?.toLowerCase().includes(text.toLowerCase())
           );
         }
 
