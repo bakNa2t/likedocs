@@ -39,7 +39,8 @@ export const DocumentInput = ({ title, id }: DocumentInputProps) => {
       .finally(() => setIsPending(false));
   });
 
-  const showLoader = isPending || status === "connecting" || "reconnecting";
+  const showLoader =
+    isPending || status === "connecting" || status === "reconnecting";
   const showError = status === "disconnected";
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
