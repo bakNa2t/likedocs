@@ -61,7 +61,9 @@ export const TemplatesGallery = () => {
                       backgroundRepeat: "no-repeat",
                     }}
                     className="flex flex-col items-center justify-center gap-y-4 bg-white hover:bg-blue-500 size-full border hover:border-blue-500 rounded-sm transition"
-                    onClick={() => onTemplateClick(template.label, "")}
+                    onClick={() =>
+                      onTemplateClick(template.label, template.initialContent)
+                    }
                     disabled={isCreating}
                   />
                   <p className="text-sm font-medium truncate">
