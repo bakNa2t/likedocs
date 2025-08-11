@@ -15,19 +15,18 @@ import { Separator } from "@/components/ui/separator";
 
 export const Inbox = () => {
   return (
-    <>
-      <ClientSideSuspense
-        fallback={
+    <ClientSideSuspense
+      fallback={
+        <>
           <Button variant="ghost" size="icon" className="relative" disabled>
             <BellIcon className="size-5" />
           </Button>
-        }
-      >
-        <InboxMenu />
-      </ClientSideSuspense>
-
-      <Separator orientation="vertical" className="h-6" />
-    </>
+          <Separator orientation="vertical" className="h-6" />
+        </>
+      }
+    >
+      <InboxMenu />
+    </ClientSideSuspense>
   );
 };
 
