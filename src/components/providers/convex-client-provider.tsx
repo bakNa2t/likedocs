@@ -23,8 +23,20 @@ export function ConvexClientProvider({ children }: { children: ReactNode }) {
         <Authenticated>{children}</Authenticated>
 
         <Unauthenticated>
-          <div className="flex flex-col items-center justify-center min-h-screen">
-            <SignIn routing="hash" />
+          <div className="flex min-h-screen items-center justify-center bg-[#c4c4c4]">
+            <div className="flex flex-col items-center justify-center lg:w-1/2 gap-4">
+              <h1 className="text-4xl font-bold text-zinc-600">
+                Welcome to <span className="text-slate-800">Likedocs</span>
+              </h1>
+
+              <SignIn routing="hash" />
+            </div>
+
+            <img
+              src="/_docs.png"
+              alt="Frontpage image"
+              className="hidden lg:block h-screen w-1/2 object-cover bg-no-repeat"
+            />
           </div>
         </Unauthenticated>
 
