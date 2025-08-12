@@ -16,6 +16,14 @@ export async function getUsers() {
   const { sessionClaims } = await auth();
   const clerk = await clerkClient();
 
+  const organizationId =
+    sessionClaims?.org_id ||
+    (sessionClaims as unknown as { o?: { id: string } }).o?.id;
+
+  if (!organizationId) {
+    throw new Error("No organization id");
+  }
+
   const response = await clerk.users.getUserList({
     organizationId: [sessionClaims?.org_id as string],
   });
@@ -25,6 +33,7 @@ export async function getUsers() {
     name:
       user.fullName ?? user.primaryEmailAddress?.emailAddress ?? "Anonymous",
     avatar: user.imageUrl,
+    color: "",
   }));
 
   return users;
