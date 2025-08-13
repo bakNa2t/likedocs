@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import { ConvexClientProvider } from "@/components/providers/convex-client-provider";
 
 import "@liveblocks/react-ui/styles.css";
@@ -37,8 +38,16 @@ export default function RootLayout({
       <body className={inter.className}>
         <NuqsAdapter>
           <ConvexClientProvider>
-            <Toaster />
-            <TooltipProvider>{children}</TooltipProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+              storageKey="likedocs-theme"
+            >
+              <Toaster />
+              <TooltipProvider>{children}</TooltipProvider>
+            </ThemeProvider>
           </ConvexClientProvider>
         </NuqsAdapter>
       </body>
