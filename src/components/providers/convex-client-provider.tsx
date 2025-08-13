@@ -11,6 +11,7 @@ import {
 } from "convex/react";
 
 import { FullScreenLoader } from "../fullscreen-loader";
+import Image from "next/image";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
@@ -23,10 +24,11 @@ export function ConvexClientProvider({ children }: { children: ReactNode }) {
         <Authenticated>{children}</Authenticated>
 
         <Unauthenticated>
-          <div className="flex min-h-screen items-center justify-center bg-[#c4c4c4]">
+          <div className="flex min-h-screen items-center justify-center bg-[#c1d3db]">
             <div className="flex flex-col items-center justify-center lg:w-1/2 gap-4">
-              <h1 className="text-4xl font-bold text-zinc-600">
-                Welcome to <span className="text-slate-800">Likedocs</span>
+              <h1 className="flex gap-2 text-4xl font-bold text-slate-800">
+                <Image src="/logo.svg" alt="logo" width={44} height={44} />
+                Likedocs
               </h1>
 
               <SignIn routing="hash" />
