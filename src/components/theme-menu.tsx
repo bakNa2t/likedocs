@@ -1,5 +1,5 @@
 import { useTheme } from "next-themes";
-import { MoonIcon, SunIcon } from "lucide-react";
+import { Check, MoonIcon, SunIcon } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -26,12 +26,12 @@ export const ThemeMenu = () => {
       <DropdownMenuContent align="start">
         <DropdownMenuItem onClick={() => setTheme("light")}>
           <SunIcon className="size-4 mr-2" />
-          Light
+          Light {theme === "light" && <Check className="h-4 w-4" />}
         </DropdownMenuItem>
 
         <DropdownMenuItem onClick={() => setTheme("dark")}>
           <MoonIcon className="size-4 mr-2" />
-          Dark
+          Dark {theme === "dark" && <Check className="h-4 w-4" />}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
