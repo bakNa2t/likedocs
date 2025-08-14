@@ -3,6 +3,10 @@ import Link from "next/link";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 
 import { SearchInput } from "./search-input";
+import { Button } from "@/components/ui/button";
+import { MoonIcon, SunIcon } from "lucide-react";
+
+const theme = "light";
 
 export const Navbar = () => {
   return (
@@ -26,6 +30,14 @@ export const Navbar = () => {
         />
         <UserButton />
       </div>
+
+      <Button variant="ghost" size="icon" onClick={() => {}} className="ml-2">
+        {theme === "light" ? (
+          <SunIcon className="size-4" />
+        ) : (
+          <MoonIcon className="size-4" />
+        )}
+      </Button>
     </nav>
   );
 };
