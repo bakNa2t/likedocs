@@ -24,6 +24,12 @@ export const Navbar = () => {
           afterLeaveOrganizationUrl="/"
           afterSelectOrganizationUrl="/"
           afterSelectPersonalUrl="/"
+          appearance={{
+            elements: {
+              organizationSwitcherTrigger:
+                "p-2 dark:text-white dark:hover:bg-neutral-100/40",
+            },
+          }}
         />
         <UserButton />
       </div>
