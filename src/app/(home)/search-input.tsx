@@ -37,7 +37,7 @@ export const SearchInput = () => {
           value={value}
           onChange={handleChange}
           placeholder="Search"
-          className="w-full h-[48px] px-14 placeholder:text-neutral-700 md:text-base border-none focus-visible:shadow-[0_1px_1px_0_rgba(65,69,73,.3),0_1px_3px_1px_rgba(65,69,73,.15)] bg-[#f0f4f8] rounded-full focus-visible:ring-0 focus:bg-white"
+          className="w-full h-[48px] px-14 placeholder:text-neutral-700 md:text-base border-none focus-visible:shadow-[0_1px_1px_0_rgba(65,69,73,.3),0_1px_3px_1px_rgba(65,69,73,.15)] dark:focus-visible:shadow-[0_1px_1px_0_rgba(255, 255, 255, 0.9),0_1px_3px_1px_rgba(234, 245, 255, 0.65)]  bg-[#f0f4f8] dark:bg-neutral-600/60 rounded-full focus-visible:ring-0 focus:bg-white"
         />
 
         <Button
