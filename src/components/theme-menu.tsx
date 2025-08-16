@@ -14,7 +14,12 @@ export const ThemeMenu = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" onClick={() => {}} className="ml-2">
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => {}}
+          className="ml-2 dark:hover:bg-neutral-400/60"
+        >
           {theme === "light" ? (
             <SunIcon className="size-4" />
           ) : (
