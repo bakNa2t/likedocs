@@ -120,10 +120,10 @@ export const Editor = ({ initialContent }: EditorProps) => {
   });
 
   return (
-    <div className="size-full overflow-auto bg-[#FAFBFD] px-4 print:p-0 print:bg-white print:overflow-visible">
+    <div className="size-full overflow-auto bg-[#FAFBFD] dark:bg-neutral-800 px-4 print:p-0 print:bg-white print:overflow-visible">
       <Ruler />
       <div className="flex justify-center min-w-max w-[816px] py-6 print:py-0 mx-auto print:w-full print:min-w-0">
-        <EditorContent editor={editor} />
+        <EditorContent editor={editor} className="dark:text-neutral-800" />
         <Threads editor={editor} />
       </div>
     </div>
