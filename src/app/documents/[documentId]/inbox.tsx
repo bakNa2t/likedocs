@@ -37,7 +37,11 @@ const InboxMenu = () => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="ghost" size="icon" className="relative">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="relative dark:hover:bg-neutral-600"
+          >
             <BellIcon className="size-5" />
             {inboxNotifications.length > 0 && (
               <span className="absolute -top-1 -right-1 flex items-center justify-center size-4 rounded-full text-xs text-white bg-sky-500">
