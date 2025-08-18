@@ -27,7 +27,7 @@ export const Navbar = () => {
           appearance={{
             elements: {
               organizationSwitcherTrigger:
-                "p-2 dark:text-white dark:hover:bg-neutral-100/40",
+                "p-2 dark:text-white dark:bg-neutral-600/60 dark:hover:bg-neutral-100/40",
             },
           }}
         />
