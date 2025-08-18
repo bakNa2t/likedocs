@@ -17,8 +17,7 @@ export async function getUsers() {
   const clerk = await clerkClient();
 
   const organizationId =
-    sessionClaims?.org_id ||
-    (sessionClaims as unknown as { o?: { id: string } }).o?.id;
+    sessionClaims?.org_id || (sessionClaims?.o as unknown as string);
 
   if (!organizationId) {
     throw new Error("No organization id");
