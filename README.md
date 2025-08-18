@@ -77,4 +77,12 @@ npm run dev
 
 click here to visit => [_**Likedocs**_](https://github.com/bakNa2t/likedocs)
 
+<div align="center">
+    <p>
+        <a href="https://github.com/bakNa2t/likedocs" target="_blank" >
+            <img alt="Likedocs" src ="./public/likedocs-banner.png" width="1024">
+        </a>
+    </p>
+</div>
+
 ### Acknowledgements by youtube tutorial [Code With Antonio](https://www.youtube.com/watch?v=gq2bbDmSokU)
