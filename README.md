@@ -75,11 +75,11 @@ npx convex dev
 npm run dev
 ```
 
-click here to visit => [_**Likedocs**_](https://github.com/bakNa2t/likedocs)
+click here to visit => [_**Likedocs**_](https://likedocs.vercel.app/)
 
 <div align="center">
     <p>
-        <a href="https://github.com/bakNa2t/likedocs" target="_blank" >
+        <a href="https://likedocs.vercel.app/" target="_blank" >
             <img alt="Likedocs" src ="./public/likedocs-banner.png" width="1024">
         </a>
     </p>
