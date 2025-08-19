@@ -48,6 +48,11 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 import { cn } from "@/lib/utils";
 import { useEditorStore } from "@/store/use-editor-store";
@@ -633,11 +638,24 @@ export const Toolbar = () => {
   ];
 
   return (
-    <div className="flex items-center gap-x-0.5 px-2.5 py-0.5 bg-[#f1f4f9] rounded-[24px] min-h-[40px] overflow-x-auto">
+    <div className="flex items-center gap-x-0.5 px-2.5 py-0.5 bg-[#f1f4f9] dark:bg-neutral-600 rounded-[24px] min-h-[40px] overflow-x-auto">
       {/* Undo, Redo, Print and Spell Check */}
-      {sections[0].map((item) => (
-        <ToolbarButton key={item.label} {...item} />
-      ))}
+      {sections[0].map((item) => {
+        return (
+          <Tooltip key={item.label}>
+            <TooltipTrigger asChild>
+              <ToolbarButton key={item.label} {...item} />
+            </TooltipTrigger>
+            <TooltipContent
+              align="center"
+              side="top"
+              className="bg-neutral-800"
+            >
+              {item.label} label
+            </TooltipContent>
+          </Tooltip>
+        );
+      })}
       <Separator orientation="vertical" className="h-6 bg-neutral-300" />
       {/* Font family button*/}
       <FontFamilyButton />
