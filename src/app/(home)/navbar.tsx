@@ -3,7 +3,7 @@ import Link from "next/link";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 
 import { SearchInput } from "./search-input";
-import { ThemeMenu } from "@/components/theme-menu";
+import { AdvancedMenu } from "@/components/advanced-menu";
 
 export const Navbar = () => {
   return (
@@ -32,9 +32,9 @@ export const Navbar = () => {
           }}
         />
         <UserButton />
-      </div>
 
-      <ThemeMenu />
+        <AdvancedMenu />
+      </div>
     </nav>
   );
 };
