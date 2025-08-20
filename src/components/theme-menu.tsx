@@ -7,28 +7,24 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Button } from "@/components/ui/button";
 
 export const ThemeMenu = () => {
   const { theme, setTheme } = useTheme();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => {}}
-          className="ml-2 dark:hover:bg-neutral-400/60"
-        >
-          {theme === "light" ? (
-            <SunIcon className="size-4" />
-          ) : (
-            <MoonIcon className="size-4" />
-          )}
-        </Button>
+        {theme === "light" ? (
+          <div className="flex items-center justify-center">
+            <SunIcon className="size-4 mr-2" /> Theme
+          </div>
+        ) : (
+          <div className="flex items-center justify-center">
+            <MoonIcon className="size-4 mr-2" /> Theme
+          </div>
+        )}
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="start">
+      <DropdownMenuContent align="end" alignOffset={-37}>
         <DropdownMenuItem onClick={() => setTheme("light")}>
           <SunIcon className="size-4 mr-2" />
           Light {theme === "light" && <Check className="h-4 w-4" />}
