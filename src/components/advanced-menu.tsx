@@ -20,11 +20,17 @@ export const AdvancedMenu = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => {}}>
-          Theme <ThemeMenu />
+        <DropdownMenuItem
+          onSelect={(e) => e.preventDefault()}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <ThemeMenu />
         </DropdownMenuItem>
 
-        <DropdownMenuItem onClick={() => {}}>
+        <DropdownMenuItem
+          onSelect={(e) => e.preventDefault()}
+          onClick={(e) => e.stopPropagation()}
+        >
           <GlobeIcon className="size-4 mr-2" />
           Language
         </DropdownMenuItem>
