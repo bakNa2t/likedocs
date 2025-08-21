@@ -1,4 +1,4 @@
-import { GlobeIcon, MoreVerticalIcon } from "lucide-react";
+import { MoreVerticalIcon } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { ThemeMenu } from "./theme-menu";
+import { LangMenu } from "./lang-menu";
 
 export const AdvancedMenu = () => {
   return (
@@ -31,8 +32,7 @@ export const AdvancedMenu = () => {
           onSelect={(e) => e.preventDefault()}
           onClick={(e) => e.stopPropagation()}
         >
-          <GlobeIcon className="size-4 mr-2" />
-          Language
+          <LangMenu />
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
