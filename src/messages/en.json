@@ -1,0 +1,11 @@
+{
+  "documentTempaltes": {
+    "blankDocumet": "Blank document",
+    "letter": "Letter",
+    "coverLetter": "Cover letter",
+    "resume": "Resume",
+    "businessLetter": "Business letter",
+    "projectProposal": "Project proposal",
+    "softwareDevelopment": "Software development"
+  }
+}
