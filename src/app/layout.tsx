@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Inter } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
 
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,6 +11,7 @@ import { ConvexClientProvider } from "@/components/providers/convex-client-provi
 import "@liveblocks/react-ui/styles.css";
 import "@liveblocks/react-tiptap/styles.css";
 import "./globals.css";
+import { getLocale, getMessages } from "next-intl/server";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,28 +30,33 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const messages = await getMessages();
+  const locale = await getLocale();
+
   return (
-    <html lang="en">
+    <html lang={locale}>
       <body className={inter.className}>
-        <NuqsAdapter>
-          <ConvexClientProvider>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="light"
-              enableSystem
-              disableTransitionOnChange
-              storageKey="likedocs-theme"
-            >
-              <Toaster />
-              <TooltipProvider>{children}</TooltipProvider>
-            </ThemeProvider>
-          </ConvexClientProvider>
-        </NuqsAdapter>
+        <NextIntlClientProvider messages={messages}>
+          <NuqsAdapter>
+            <ConvexClientProvider>
+              <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem
+                disableTransitionOnChange
+                storageKey="likedocs-theme"
+              >
+                <Toaster />
+                <TooltipProvider>{children}</TooltipProvider>
+              </ThemeProvider>
+            </ConvexClientProvider>
+          </NuqsAdapter>
+        </NextIntlClientProvider>
       </body>
     </html>
   );
