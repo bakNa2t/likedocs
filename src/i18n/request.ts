@@ -1,7 +1,9 @@
+import { cookies } from "next/headers";
 import { getRequestConfig } from "next-intl/server";
 
 export default getRequestConfig(async () => {
-  const locale = "en";
+  const cookieLocale = (await cookies()).get("LIKEDOCS_LOCALE")?.value || "en";
+  const locale = cookieLocale;
 
   return {
     locale,
