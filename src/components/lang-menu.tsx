@@ -1,7 +1,9 @@
-import { useState } from "react";
-import { Check, LanguagesIcon } from "lucide-react";
+"use client";
 
-// import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import { Check, LanguagesIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,7 +12,31 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export const LangMenu = () => {
-  const [locale, setLocale] = useState("en");
+  const router = useRouter();
+  const [locale, setLocale] = useState("");
+
+  useEffect(() => {
+    const cookieLocale = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("LIKEDOCS_LOCALE="))
+      ?.split("=")[1];
+
+    if (cookieLocale) {
+      setLocale(cookieLocale);
+    } else {
+      const browserLocale = navigator.language.slice(0, 2);
+
+      setLocale(browserLocale);
+      document.cookie = `LIKEDOCS_LOCALE=${browserLocale};`;
+      router.refresh();
+    }
+  }, [router]);
+
+  const changeLocale = (newLocale: string) => {
+    setLocale(newLocale);
+    document.cookie = `LIKEDOCS_LOCALE=${newLocale};`;
+    router.refresh();
+  };
 
   return (
     <DropdownMenu>
@@ -21,11 +47,11 @@ export const LangMenu = () => {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" alignOffset={-23}>
-        <DropdownMenuItem onClick={() => setLocale("en")}>
+        <DropdownMenuItem onClick={() => changeLocale("en")}>
           en
           {locale === "en" && <Check className="h-4 w-4" />}
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setLocale("ru")}>
+        <DropdownMenuItem onClick={() => changeLocale("ru")}>
           ru
           {locale === "ru" && <Check className="h-4 w-4" />}
         </DropdownMenuItem>
