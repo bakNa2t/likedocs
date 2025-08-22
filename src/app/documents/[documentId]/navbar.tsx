@@ -47,7 +47,7 @@ import { api } from "../../../../convex/_generated/api";
 import { Doc } from "../../../../convex/_generated/dataModel";
 import { useEditorStore } from "@/store/use-editor-store";
 import { RenameDialog } from "@/components/rename-dialog";
-import { ThemeMenu } from "@/components/theme-menu";
+import { AdvancedMenu } from "@/components/advanced-menu";
 
 interface NavbarProps {
   data: Doc<"documents"> | null;
@@ -350,7 +350,7 @@ export const Navbar = ({ data }: NavbarProps) => {
         />
         <UserButton />
 
-        <ThemeMenu />
+        <AdvancedMenu />
       </div>
     </nav>
   );
