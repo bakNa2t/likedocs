@@ -1,11 +1,14 @@
 {
-  "documentTempaltes": {
-    "blankDocumet": "Пустой документ",
-    "letter": "Письмоr",
-    "coverLetter": "Сопроводительное письмо",
-    "resume": "Резюме",
-    "businessLetter": "Деловое письмо",
-    "projectProposal": "Предложение проекта",
-    "softwareDevelopmentProposal": "Предложение на разработку ПО"
+  "DocumentTempaltes": {
+    "startNewDocument": "Начать новый документ",
+    "documentTableName": "Имя",
+    "documentTableShared": "Тип",
+    "documentTableCreatedAt": "Дата создания",
+    "documentsNotFound": "Документы не найдены",
+    "loadMore": "Загрузить еще",
+    "endOfResults": "Конец результатов",
+    "documentAdvancedMenuRemove": "Удалить",
+    "documentAdvancedMenuRename": "Переименовать",
+    "documentAdvancedMenuOpenNewTab": "Открыть в новой вкладке"
   }
 }

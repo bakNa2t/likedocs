@@ -1,11 +1,16 @@
 {
-  "documentTempaltes": {
-    "blankDocumet": "Blank document",
-    "letter": "Letter",
-    "coverLetter": "Cover letter",
-    "resume": "Resume",
-    "businessLetter": "Business letter",
-    "projectProposal": "Project proposal",
-    "softwareDevelopment": "Software development"
+  "DocumentTempaltes": {
+    "startNewDocument": "Start a new Document",
+    "documentTableName": "Name",
+    "documentTableShared": "Shared",
+    "documentTableCreatedAt": "Created at",
+    "documentsNotFound": "No documents found",
+    "documentSharedPersonal": "Personal",
+    "documentSharedOrganization": "Organization",
+    "loadMore": "Load more",
+    "endOfResults": "End of results",
+    "documentAdvancedMenuRemove": "Remove",
+    "documentAdvancedMenuRename": "Rename",
+    "documentAdvancedMenuOpenNewTab": "Open in new tab"
   }
 }
