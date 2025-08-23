@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "convex/react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { toast } from "sonner";
 
 import {
@@ -21,6 +21,7 @@ import { api } from "../../../convex/_generated/api";
 export const TemplatesGallery = () => {
   const router = useRouter();
   const locale = useLocale();
+  const t = useTranslations("DocumentTempaltes");
   const create = useMutation(api.documents.create);
 
   const [isCreating, setIsCreating] = useState(false);
@@ -41,7 +42,7 @@ export const TemplatesGallery = () => {
   return (
     <div className="bg-[#f1f3f4] dark:bg-neutral-800/60">
       <div className="flex flex-col gap-y-4 max-w-screen-lg mx-auto px-16 py-6">
-        <h3 className="font-medium">Start a new Document</h3>
+        <h3 className="font-medium">{t("startNewDocument")}</h3>
         <Carousel>
           <CarouselContent className="-ml-4">
             {locale === "en"
