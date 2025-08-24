@@ -12,6 +12,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 
 interface DocumentsTableProps {
   documents: Doc<"documents">[] | undefined;
@@ -24,6 +25,8 @@ export const DocumentsTable = ({
   loadMore,
   status,
 }: DocumentsTableProps) => {
+  const t = useTranslations("DocumentTempaltes");
+
   return (
     <div className="flex flex-col gap-5 py-6 px-[13rem] max-w-screen-xl mx-auto">
       {documents === undefined ? (
@@ -34,10 +37,14 @@ export const DocumentsTable = ({
         <Table>
           <TableHeader>
             <TableRow className="border-none hover:bg-transparent">
-              <TableHead>Name</TableHead>
+              <TableHead>{t("documentTableName")}</TableHead>
               <TableHead>&nbsp;</TableHead>
-              <TableHead className="hidden md:table-cell">Shared</TableHead>
-              <TableHead className="hidden md:table-cell">Created at</TableHead>
+              <TableHead className="hidden md:table-cell">
+                {t("documentTableShared")}
+              </TableHead>
+              <TableHead className="hidden md:table-cell">
+                {t("documentTableCreatedAt")}
+              </TableHead>
             </TableRow>
           </TableHeader>
 
@@ -48,7 +55,7 @@ export const DocumentsTable = ({
                   colSpan={4}
                   className="h-24 text-center text-muted-foreground"
                 >
-                  No documents found.
+                  {t("documentsNotFound")}
                 </TableCell>
               </TableRow>
             </TableBody>
@@ -69,7 +76,7 @@ export const DocumentsTable = ({
           onClick={() => loadMore(5)}
           disabled={status !== "CanLoadMore"}
         >
-          {status === "CanLoadMore" ? "Load more" : "End of results"}
+          {status === "CanLoadMore" ? t("loadMore") : t("endOfResults")}
         </Button>
       </div>
     </div>
