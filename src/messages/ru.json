@@ -5,6 +5,8 @@
     "documentTableShared": "Тип",
     "documentTableCreatedAt": "Дата создания",
     "documentsNotFound": "Документы не найдены",
+    "documentSharedPersonal": "Личный",
+    "documentSharedOrganization": "Организация",
     "loadMore": "Загрузить еще",
     "endOfResults": "Конец результатов",
     "documentAdvancedMenuRemove": "Удалить",

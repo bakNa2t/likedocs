@@ -1,5 +1,6 @@
 import { useRouter } from "next/navigation";
 import { format } from "date-fns";
+import { useTranslations } from "next-intl";
 import { SiGoogledocs } from "react-icons/si";
 import { Building2Icon, CircleUserIcon } from "lucide-react";
 
@@ -14,6 +15,7 @@ interface DocumentRowProps {
 
 export const DocumentRow = ({ document }: DocumentRowProps) => {
   const router = useRouter();
+  const t = useTranslations("DocumentTempaltes");
 
   const onNewTabClick = (id: string) => {
     window.open(`/documents/${id}`, "_blink");
@@ -36,7 +38,9 @@ export const DocumentRow = ({ document }: DocumentRowProps) => {
         ) : (
           <CircleUserIcon className="size-4" />
         )}
-        {document.organizationId ? "Organization" : "Personal"}
+        {document.organizationId
+          ? t("documentSharedOrganization")
+          : t("documentSharedPersonal")}
       </TableCell>
 
       <TableCell className="hidden md:table-cell text-muted-foreground">
