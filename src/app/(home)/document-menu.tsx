@@ -1,3 +1,4 @@
+import { useTranslations } from "next-intl";
 import {
   ExternalLinkIcon,
   FilePenIcon,
@@ -28,6 +29,8 @@ export const DocumentMenu = ({
   title,
   onNewTab,
 }: DocumentMenuProps) => {
+  const t = useTranslations("DocumentTempaltes");
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -43,7 +46,7 @@ export const DocumentMenu = ({
             onClick={(e) => e.stopPropagation()}
           >
             <FilePenIcon className="size-4 mr-2" />
-            Rename
+            {t("documentAdvancedMenuRename")}
           </DropdownMenuItem>
         </RenameDialog>
 
@@ -53,13 +56,13 @@ export const DocumentMenu = ({
             onClick={(e) => e.stopPropagation()}
           >
             <TrashIcon className="size-4 mr-2" />
-            Remove
+            {t("documentAdvancedMenuRemove")}
           </DropdownMenuItem>
         </RemoveDialog>
 
         <DropdownMenuItem onClick={() => onNewTab(documentId)}>
           <ExternalLinkIcon className="size-4 mr-2" />
-          Open in a new tab
+          {t("documentAdvancedMenuOpenNewTab")}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
