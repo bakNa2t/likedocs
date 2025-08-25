@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { SearchIcon, XIcon } from "lucide-react";
 
 import { Input } from "@/components/ui/input";
@@ -12,6 +13,7 @@ export const SearchInput = () => {
   const [search, setSearch] = useSearchParams("search");
   const [value, setValue] = useState(search);
   const inputRef = useRef<HTMLInputElement>(null);
+  const t = useTranslations("DocumentTempaltes");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -36,7 +38,7 @@ export const SearchInput = () => {
           ref={inputRef}
           value={value}
           onChange={handleChange}
-          placeholder="Search"
+          placeholder={t("documentSearchPlaceholder")}
           className="w-full h-[48px] px-14 placeholder:text-neutral-700 md:text-base border-none focus-visible:shadow-[0_1px_1px_0_rgba(65,69,73,.3),0_1px_3px_1px_rgba(65,69,73,.15)] dark:focus-visible:shadow-[0_1px_1px_0_rgba(255, 255, 255, 0.9),0_1px_3px_1px_rgba(234, 245, 255, 0.65)]  bg-[#f0f4f8] dark:bg-neutral-600/60 rounded-full focus-visible:ring-0 focus:bg-white"
         />
 
