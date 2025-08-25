@@ -11,6 +11,15 @@
     "endOfResults": "End of results",
     "documentAdvancedMenuRemove": "Remove",
     "documentAdvancedMenuRename": "Rename",
-    "documentAdvancedMenuOpenNewTab": "Open in new tab"
+    "documentAdvancedMenuOpenNewTab": "Open in new tab",
+    "documentSearchPlaceholder": "Search..."
+  },
+  "Navbar": {
+    "themeMode": "Theme",
+    "themeModeLight": "Light",
+    "themeModeDark": "Dark",
+    "language": "Language",
+    "languageEn": "Eng",
+    "languageRu": "Rus"
   }
 }

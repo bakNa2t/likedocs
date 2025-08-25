@@ -11,6 +11,15 @@
     "endOfResults": "Конец результатов",
     "documentAdvancedMenuRemove": "Удалить",
     "documentAdvancedMenuRename": "Переименовать",
-    "documentAdvancedMenuOpenNewTab": "Открыть в новой вкладке"
+    "documentAdvancedMenuOpenNewTab": "Открыть в новой вкладке",
+    "documentSearchPlaceholder": "Поиск..."
+  },
+  "Navbar": {
+    "themeMode": "Тема",
+    "themeModeLight": "Светлая",
+    "themeModeDark": "Темная",
+    "language": "Язык",
+    "languageEn": "Англ",
+    "languageRu": "Рус"
   }
 }
