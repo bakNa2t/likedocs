@@ -1,4 +1,5 @@
 import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 import { Check, MoonIcon, SunIcon } from "lucide-react";
 
 import {
@@ -9,17 +10,21 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 export const ThemeMenu = () => {
+  const t = useTranslations("Navbar");
   const { theme, setTheme } = useTheme();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         {theme === "light" ? (
           <div className="flex items-center justify-center">
-            <SunIcon className="size-4 mr-2" /> Theme
+            <SunIcon className="size-4 mr-2" />
+            {t("themeMode")}
           </div>
         ) : (
           <div className="flex items-center justify-center">
-            <MoonIcon className="size-4 mr-2" /> Theme
+            <MoonIcon className="size-4 mr-2" />
+            {t("themeMode")}
           </div>
         )}
       </DropdownMenuTrigger>
@@ -27,12 +32,14 @@ export const ThemeMenu = () => {
       <DropdownMenuContent align="end" alignOffset={-37}>
         <DropdownMenuItem onClick={() => setTheme("light")}>
           <SunIcon className="size-4 mr-2" />
-          Light {theme === "light" && <Check className="h-4 w-4" />}
+          {t("themeModeLight")}{" "}
+          {theme === "light" && <Check className="h-4 w-4" />}
         </DropdownMenuItem>
 
         <DropdownMenuItem onClick={() => setTheme("dark")}>
           <MoonIcon className="size-4 mr-2" />
-          Dark {theme === "dark" && <Check className="h-4 w-4" />}
+          {t("themeModeDark")}{" "}
+          {theme === "dark" && <Check className="h-4 w-4" />}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
