@@ -10,9 +10,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useTranslations } from "next-intl";
 
 export const LangMenu = () => {
   const router = useRouter();
+  const t = useTranslations("Navbar");
   const [locale, setLocale] = useState("");
 
   useEffect(() => {
@@ -43,16 +45,16 @@ export const LangMenu = () => {
       <DropdownMenuTrigger asChild>
         <div className="flex items-center gap-2">
           <LanguagesIcon className="size-4" />
-          <span>Language</span>
+          <span>{t("language")}</span>
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" alignOffset={-23}>
         <DropdownMenuItem onClick={() => changeLocale("en")}>
-          en
+          {t("languageEn")}
           {locale === "en" && <Check className="h-4 w-4" />}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={() => changeLocale("ru")}>
-          ru
+          {t("languageRu")}
           {locale === "ru" && <Check className="h-4 w-4" />}
         </DropdownMenuItem>
       </DropdownMenuContent>
