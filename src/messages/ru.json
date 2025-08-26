@@ -39,5 +39,14 @@
     "language": "Язык",
     "languageEn": "Англ",
     "languageRu": "Рус"
+  },
+  "Dialog": {
+    "areYouSure": "Вы уверены?",
+    "descriptionRemove": "Это действие нельзя отменить. Это будет навсегда удалить ваш документ.",
+    "cancel": "Отмена",
+    "delete": "Удалить",
+    "renameTitle": "Новое имя",
+    "renameDescription": "Введите новое имя для этого документа",
+    "save": "Сохранить"
   }
 }

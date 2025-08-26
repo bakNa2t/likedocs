@@ -39,5 +39,14 @@
     "language": "Language",
     "languageEn": "Eng",
     "languageRu": "Rus"
+  },
+  "Dialog": {
+    "areYouSure": "Are you sure?",
+    "descriptionRemove": "This action cannot be undone. This will permanently delete your document.",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "renameTitle": "Rename",
+    "renameDescription": "Enter a new name for this document",
+    "save": "Save"
   }
 }
