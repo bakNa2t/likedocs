@@ -6,6 +6,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useMutation } from "convex/react";
 import { BsFilePdf } from "react-icons/bs";
+import { useTranslations } from "next-intl";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import {
   BoldIcon,
@@ -55,6 +56,7 @@ interface NavbarProps {
 
 export const Navbar = ({ data }: NavbarProps) => {
   const router = useRouter();
+  const t = useTranslations("Navbar");
   const { editor } = useEditorStore();
 
   const mutate = useMutation(api.documents.create);
@@ -134,13 +136,13 @@ export const Navbar = ({ data }: NavbarProps) => {
               {/* File menu */}
               <MenubarMenu>
                 <MenubarTrigger className="h-auto text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted">
-                  File
+                  {t("file")}
                 </MenubarTrigger>
                 <MenubarContent className="print:hidden">
                   <MenubarSub>
                     <MenubarSubTrigger>
                       <FileIcon className="size-4 mr-2" />
-                      Save
+                      {t("fileSave")}
                     </MenubarSubTrigger>
 
                     <MenubarSubContent>
@@ -168,7 +170,7 @@ export const Navbar = ({ data }: NavbarProps) => {
                       onClick={onAddNewDocument}
                       className="size-4 mr-2"
                     />
-                    New document
+                    {t("fileNewDocument")}
                   </MenubarItem>
 
                   <MenubarSeparator />
@@ -183,7 +185,7 @@ export const Navbar = ({ data }: NavbarProps) => {
                         onSelect={(e) => e.preventDefault()}
                       >
                         <FilePenIcon className="size-4 mr-2" />
-                        Rename
+                        {t("fileRename")}
                       </MenubarItem>
                     </RenameDialog>
                   )}
@@ -195,7 +197,7 @@ export const Navbar = ({ data }: NavbarProps) => {
                         onSelect={(e) => e.preventDefault()}
                       >
                         <TrashIcon className="size-4 mr-2" />
-                        Remove
+                        {t("fileRemove")}
                       </MenubarItem>
                     </RemoveDialog>
                   )}
@@ -204,7 +206,7 @@ export const Navbar = ({ data }: NavbarProps) => {
 
                   <MenubarItem onClick={() => window.print()}>
                     <PrinterIcon className="size-4 mr-2" />
-                    Print <MenubarShortcut>⌘P</MenubarShortcut>
+                    {t("filePrint")} <MenubarShortcut>⌘P</MenubarShortcut>
                   </MenubarItem>
                 </MenubarContent>
               </MenubarMenu>
@@ -212,7 +214,7 @@ export const Navbar = ({ data }: NavbarProps) => {
               {/* Edit menu */}
               <MenubarMenu>
                 <MenubarTrigger className="h-auto text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted">
-                  Edit
+                  {t("edit")}
                 </MenubarTrigger>
 
                 <MenubarContent>
@@ -220,14 +222,14 @@ export const Navbar = ({ data }: NavbarProps) => {
                     onClick={() => editor?.chain().focus().undo().run()}
                   >
                     <Undo2Icon className="size-4 mr-2" />
-                    Undo <MenubarShortcut>⌘Z</MenubarShortcut>
+                    {t("editUndo")} <MenubarShortcut>⌘Z</MenubarShortcut>
                   </MenubarItem>
 
                   <MenubarItem
                     onClick={() => editor?.chain().focus().redo().run()}
                   >
                     <Redo2Icon className="size-4 mr-2" />
-                    Redo <MenubarShortcut>⌘Y</MenubarShortcut>
+                    {t("editRedo")} <MenubarShortcut>⌘Y</MenubarShortcut>
                   </MenubarItem>
                 </MenubarContent>
               </MenubarMenu>
@@ -235,12 +237,12 @@ export const Navbar = ({ data }: NavbarProps) => {
               {/* Insert menu */}
               <MenubarMenu>
                 <MenubarTrigger className="h-auto text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted">
-                  Insert
+                  {t("insert")}
                 </MenubarTrigger>
 
                 <MenubarContent>
                   <MenubarSub>
-                    <MenubarSubTrigger>Table</MenubarSubTrigger>
+                    <MenubarSubTrigger>{t("insertTable")}</MenubarSubTrigger>
                     <MenubarSubContent>
                       <MenubarItem
                         onClick={() => insertTable({ rows: 1, cols: 1 })}
@@ -270,14 +272,14 @@ export const Navbar = ({ data }: NavbarProps) => {
               {/* Format menu */}
               <MenubarMenu>
                 <MenubarTrigger className="h-auto text-sm font-normal py-0.5 px-[7px] rounded-sm hover:bg-muted">
-                  Format
+                  {t("format")}
                 </MenubarTrigger>
 
                 <MenubarContent>
                   <MenubarSub>
                     <MenubarSubTrigger>
                       <TextIcon className="size-4 mr-2" />
-                      Text
+                      {t("formatText")}
                     </MenubarSubTrigger>
 
                     <MenubarSubContent>
@@ -287,7 +289,8 @@ export const Navbar = ({ data }: NavbarProps) => {
                         }
                       >
                         <BoldIcon className="size-4 mr-2" />
-                        Bold <MenubarShortcut>⌘B</MenubarShortcut>
+                        {t("formatTextBold")}{" "}
+                        <MenubarShortcut>⌘B</MenubarShortcut>
                       </MenubarItem>
                       <MenubarItem
                         onClick={() =>
@@ -295,7 +298,8 @@ export const Navbar = ({ data }: NavbarProps) => {
                         }
                       >
                         <ItalicIcon className="size-4 mr-2" />
-                        Italic <MenubarShortcut>⌘I</MenubarShortcut>
+                        {t("formatTextItalic")}{" "}
+                        <MenubarShortcut>⌘I</MenubarShortcut>
                       </MenubarItem>
                       <MenubarItem
                         onClick={() =>
@@ -303,7 +307,8 @@ export const Navbar = ({ data }: NavbarProps) => {
                         }
                       >
                         <UnderlineIcon className="size-4 mr-2" />
-                        Underline <MenubarShortcut>⌘U</MenubarShortcut>
+                        {t("formatTextUnderline")}{" "}
+                        <MenubarShortcut>⌘U</MenubarShortcut>
                       </MenubarItem>
                       <MenubarItem
                         onClick={() =>
@@ -311,7 +316,7 @@ export const Navbar = ({ data }: NavbarProps) => {
                         }
                       >
                         <StrikethroughIcon className="size-4 mr-2" />
-                        Strikethrough&nbsp;{" "}
+                        {t("formatTextStrikethrough")}&nbsp;{" "}
                         <MenubarShortcut>⌘S</MenubarShortcut>
                       </MenubarItem>
                     </MenubarSubContent>
@@ -323,7 +328,7 @@ export const Navbar = ({ data }: NavbarProps) => {
                     }
                   >
                     <RemoveFormattingIcon className="size-4 mr-2" />
-                    Remove formatting
+                    {t("formatRemoveFormatting")}
                   </MenubarItem>
                 </MenubarContent>
               </MenubarMenu>
