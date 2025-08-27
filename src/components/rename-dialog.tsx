@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 import {
   Dialog,
@@ -34,6 +35,7 @@ export const RenameDialog = ({
   const [isUpdating, setIsUpdating] = useState(false);
   const [title, setTitle] = useState(initialTitle);
   const [open, setOpen] = useState(false);
+  const t = useTranslations("Dialog");
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,10 +57,8 @@ export const RenameDialog = ({
       <DialogContent onClick={(e) => e.stopPropagation()}>
         <form onSubmit={onSubmit}>
           <DialogHeader>
-            <DialogTitle>Rename</DialogTitle>
-            <DialogDescription>
-              Enter a new name for this document
-            </DialogDescription>
+            <DialogTitle>{t("renameTitle")}</DialogTitle>
+            <DialogDescription>{t("renameDescription")}</DialogDescription>
           </DialogHeader>
 
           <div className="my-4">
@@ -80,14 +80,14 @@ export const RenameDialog = ({
                 setOpen(false);
               }}
             >
-              Cancel
+              {t("cancel")}
             </Button>
             <Button
               type="submit"
               disabled={isUpdating}
               onClick={(e) => e.stopPropagation()}
             >
-              Save
+              {t("save")}
             </Button>
           </DialogFooter>
         </form>
