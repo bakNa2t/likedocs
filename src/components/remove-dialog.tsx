@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useMutation } from "convex/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 import {
   AlertDialog,
@@ -28,6 +29,7 @@ interface RemoveDialogProps {
 export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
   const router = useRouter();
   const remove = useMutation(api.documents.removeById);
+  const t = useTranslations("Dialog");
   const [isRemoving, setIsRemoving] = useState(false);
 
   return (
@@ -36,17 +38,16 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
 
       <AlertDialogContent onClick={(e) => e.stopPropagation()}>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogTitle>{t("areYouSure")}</AlertDialogTitle>
 
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            document.
+            {t("descriptionRemove")}
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>
           <AlertDialogCancel onClick={(e) => e.stopPropagation()}>
-            Cancel
+            {t("cancel")}
           </AlertDialogCancel>
           <AlertDialogAction
             onClick={(e) => {
@@ -62,7 +63,7 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
             }}
             disabled={isRemoving}
           >
-            Delete
+            {t("delete")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
