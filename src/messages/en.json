@@ -48,5 +48,9 @@
     "renameTitle": "Rename",
     "renameDescription": "Enter a new name for this document",
     "save": "Save"
+  },
+  "Toast": {
+    "documentCreated": "Document created",
+    "somethingWentWrong": "Something went wrong"
   }
 }

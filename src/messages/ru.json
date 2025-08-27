@@ -48,5 +48,9 @@
     "renameTitle": "Новое имя",
     "renameDescription": "Введите новое имя для этого документа",
     "save": "Сохранить"
+  },
+  "Toast": {
+    "documentCreated": "Документ создан",
+    "somethingWentWrong": "Что-то пошло не так"
   }
 }
