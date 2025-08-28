@@ -1,13 +1,14 @@
 import { useRef, useState } from "react";
 import { useMutation } from "convex/react";
-import { useStatus } from "@liveblocks/react";
+import { LoaderIcon } from "lucide-react";
+import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import { BsCloudCheck, BsCloudSlash } from "react-icons/bs";
+import { useStatus } from "@liveblocks/react";
 
 import { api } from "../../../../convex/_generated/api";
 import { Id } from "../../../../convex/_generated/dataModel";
 import { useDebounce } from "@/hooks/use-debounce";
-import { toast } from "sonner";
-import { LoaderIcon } from "lucide-react";
 
 interface DocumentInputProps {
   title?: string;
@@ -16,6 +17,8 @@ interface DocumentInputProps {
 
 export const DocumentInput = ({ title, id }: DocumentInputProps) => {
   const [value, setValue] = useState(title);
+
+  const t = useTranslations("Toast");
 
   const status = useStatus();
   const [isPending, setIsPending] = useState(false);
@@ -34,8 +37,8 @@ export const DocumentInput = ({ title, id }: DocumentInputProps) => {
 
     setIsPending(true);
     mutate({ id, title: newValue })
-      .then(() => toast.success("Document updated"))
-      .catch(() => toast.error("Something went wrong"))
+      .then(() => toast.success(t("documentUpdated")))
+      .catch(() => toast.error(t("somethingWentWrong")))
       .finally(() => setIsPending(false));
   });
 
@@ -59,10 +62,10 @@ export const DocumentInput = ({ title, id }: DocumentInputProps) => {
     setIsPending(true);
     mutate({ id, title: value })
       .then(() => {
-        toast.success("Document updated");
+        toast.success(t("documentUpdated"));
         setIsEditing(false);
       })
-      .catch(() => toast.error("Something went wrong"))
+      .catch(() => toast.error(t("somethingWentWrong")))
       .finally(() => setIsPending(false));
   };
 
