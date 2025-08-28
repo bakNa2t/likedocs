@@ -22,6 +22,7 @@ export const TemplatesGallery = () => {
   const router = useRouter();
   const locale = useLocale();
   const t = useTranslations("DocumentTempaltes");
+  const toastT = useTranslations("Toast");
   const create = useMutation(api.documents.create);
 
   const [isCreating, setIsCreating] = useState(false);
@@ -29,9 +30,9 @@ export const TemplatesGallery = () => {
   const onTemplateClick = (title: string, initialContent: string) => {
     setIsCreating(true);
     create({ title, initialContent })
-      .catch(() => toast.error("Something went wrong"))
+      .catch(() => toast.error(toastT("somethingWentWrong")))
       .then((documentId) => {
-        toast.success("Document created");
+        toast.success(toastT("documentCreated"));
         router.push(`/documents/${documentId}`);
       })
       .finally(() => {
