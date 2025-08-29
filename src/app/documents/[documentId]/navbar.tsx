@@ -57,18 +57,19 @@ interface NavbarProps {
 export const Navbar = ({ data }: NavbarProps) => {
   const router = useRouter();
   const t = useTranslations("Navbar");
+  const toastT = useTranslations("Toast");
   const { editor } = useEditorStore();
 
   const mutate = useMutation(api.documents.create);
 
   const onAddNewDocument = () => {
     mutate({
-      title: "Untitled document",
+      title: t("title"),
       initialContent: "",
     })
-      .catch(() => toast.error("Something went wrong"))
+      .catch(() => toast.error(toastT("somethingWentWrong")))
       .then((id) => {
-        toast.success("Document created");
+        toast.success(toastT("documentCreated"));
         router.push(`/documents/${id}`);
       });
   };
