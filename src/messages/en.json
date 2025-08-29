@@ -15,6 +15,7 @@
     "documentSearchPlaceholder": "Search..."
   },
   "Navbar": {
+    "title": "Untitled document",
     "file": "File",
     "fileSave": "Save",
     "fileNewDocument": "New Document",
@@ -51,6 +52,7 @@
   },
   "Toast": {
     "documentCreated": "Document created",
-    "somethingWentWrong": "Something went wrong"
+    "somethingWentWrong": "Something went wrong",
+    "documentUpdated": "Document updated"
   }
 }

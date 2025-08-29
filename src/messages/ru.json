@@ -15,6 +15,7 @@
     "documentSearchPlaceholder": "Поиск..."
   },
   "Navbar": {
+    "title": "Безымянный",
     "file": "Файл",
     "fileSave": "Сохранить",
     "fileNewDocument": "Новый документ",
@@ -51,6 +52,7 @@
   },
   "Toast": {
     "documentCreated": "Документ создан",
-    "somethingWentWrong": "Что-то пошло не так"
+    "somethingWentWrong": "Что-то пошло не так",
+    "documentUpdated": "Документ обнавлен"
   }
 }
