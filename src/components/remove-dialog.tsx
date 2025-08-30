@@ -30,6 +30,7 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
   const router = useRouter();
   const remove = useMutation(api.documents.removeById);
   const t = useTranslations("Dialog");
+  const toastT = useTranslations("Toast");
   const [isRemoving, setIsRemoving] = useState(false);
 
   return (
@@ -54,9 +55,9 @@ export const RemoveDialog = ({ documentId, children }: RemoveDialogProps) => {
               e.stopPropagation();
               setIsRemoving(true);
               remove({ id: documentId })
-                .catch(() => toast.error("Something went wrong"))
+                .catch(() => toast.error(toastT("somethingWentWrong")))
                 .then(() => {
-                  toast.success("Document removed");
+                  toast.success(toastT("documentRemoved"));
                   router.push("/");
                 })
                 .finally(() => setIsRemoving(false));
