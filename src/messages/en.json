@@ -53,6 +53,8 @@
   "Toast": {
     "documentCreated": "Document created",
     "somethingWentWrong": "Something went wrong",
-    "documentUpdated": "Document updated"
+    "documentUpdated": "Document updated",
+    "documentRemoved": "Document removed",
+    "failedToFetchUsers": "Failed to fetch users"
   }
 }

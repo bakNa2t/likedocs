@@ -53,6 +53,8 @@
   "Toast": {
     "documentCreated": "Документ создан",
     "somethingWentWrong": "Что-то пошло не так",
-    "documentUpdated": "Документ обнавлен"
+    "documentUpdated": "Документ обнавлен",
+    "documentRemoved": "Документ удален",
+    "failedToFetchUsers": "Не удалось получить пользователей"
   }
 }
