@@ -3,6 +3,7 @@
 import { ReactNode, useEffect, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 import {
   LiveblocksProvider,
   RoomProvider,
@@ -28,6 +29,7 @@ type User = {
 
 export function Room({ children }: { children: ReactNode }) {
   const params = useParams();
+  const toastT = useTranslations("Toast");
 
   const [users, setUsers] = useState<User[]>([]);
 
@@ -37,10 +39,10 @@ export function Room({ children }: { children: ReactNode }) {
         const list = await getUsers();
         setUsers(list);
       } catch {
-        toast.error("Failed to fetch users");
+        toast.error(toastT("failedToFetchUsers"));
       }
     },
-    []
+    [toastT]
   );
 
   useEffect(() => {
